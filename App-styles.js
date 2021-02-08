@@ -1,5 +1,6 @@
 import React from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import * as Dimensions from "eslint/lib/linter/rules";
 
 export const styles = StyleSheet.create({
   tabContainer: {
@@ -25,8 +26,21 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
   },
+  profile: {
+    backgroundColor: '#f69b31',
+    width: '100%',
+    padding: 15,
+    textAlign: 'center'
+  },
+  textOne: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  textTwo: {
+    fontSize: 20,
+  },
   scrollView: {
-    height: '50%',
+    height: 500,
     width: '80%',
     margin: 20,
     alignSelf: 'center',
@@ -36,9 +50,13 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 5,
     borderColor: '#000000',
   },
+  flatListContainer: {
+    flex: 1,
+    overflow: 'hidden',
+    borderWidth: 0,
+  },
   contentContainer: {
     alignItems: 'center',
     backgroundColor: 'lightgrey',
-    paddingBottom: 50,
   },
 });

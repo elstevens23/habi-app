@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import Header from './src/component/header';
 import SplashScreen from './src/page/splashScreen';
@@ -14,6 +14,8 @@ import {
   spider,
   tortoise,
 } from './images';
+import Lizard from "./src/page/lizard";
+import Subheader from "./src/component/subheader";
 
 const enclosuresData = [
   {id: '1', title: 'Vivarium'},
@@ -38,6 +40,9 @@ const animalsData = [
     page: 'BeardedDragon',
   },
 ];
+
+const numberOfAnimals = animalsData.length;
+const numberOfEnclosures = enclosuresData.length;
 
 const HomeScreen = () => {
   const [splashIsHidden, setSplashIsHidden] = useState(false);
@@ -87,7 +92,7 @@ const ProfileScreen = () => {
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => setSelectedId(item.page)}
         style={{backgroundColor}}
       />
     );
@@ -96,10 +101,25 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Header title="Habi" style={styles.mainTitle} />
+        <Header title="Habi" />
       </View>
       <ScrollView style={{flex: 1}}>
         <View>
+          <View style={styles.profile}>
+            <Subheader title="Profile Overview" />
+            <Text>
+              <Text style={styles.textOne}>Name: </Text>
+              <Text style={styles.textTwo}>Niall Paterson</Text>
+            </Text>
+            <Text>
+              <Text style={styles.textOne}>Number of Animals: </Text>
+              <Text style={styles.textTwo}>{numberOfAnimals}</Text>
+            </Text>
+            <Text>
+              <Text style={styles.textOne}>Number of Enclosures: </Text>
+              <Text style={styles.textTwo}>{numberOfEnclosures}</Text>
+            </Text>
+          </View>
           <View style={styles.scrollView}>
             <Header title="My Animals" />
             <FlatList
@@ -107,6 +127,7 @@ const ProfileScreen = () => {
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
               extraData={selectedId}
+              style={styles.flatListContainer}
             />
           </View>
           <View style={styles.scrollView}>
@@ -123,6 +144,7 @@ const ProfileScreen = () => {
     </View>
   );
 };
+
 
 const SettingsScreen = () => {
   return (
